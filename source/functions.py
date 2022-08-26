@@ -1,6 +1,8 @@
 import getch
 from source import variables as var
+from source import interface
 
+ui = interface.Interface()
 
 class Functions():
 	def __init__(self):
@@ -56,7 +58,7 @@ class Functions():
 		IDs = self.get_column(table,column)
 		output = []
 
-		
+		print("\n\n")		
 		temp = input(input_var)
 		try:
 			# check if input is integer
@@ -86,7 +88,7 @@ class Functions():
 		index = 0
 		names = self.get_column(table,column)
 		output = []
-
+		print("\n\n")		
 		temp = input(input_var)
 
 		if temp in names:
@@ -99,3 +101,91 @@ class Functions():
 			return output
 		else:
 			return "err_04"
+
+	#################################################
+	# ----> Spreadsheet Mode (Manage Tables)
+	#################################################
+	def spreadsheet_mode(self,table,name):
+		_range = 10
+		fields = table.pop(0)
+		_max = len(table)
+		top = 0
+		bottom = 10
+		crt_row = 0
+		row = 0
+		columns = len(table[0])
+		column = 0
+		event = 0
+		first_loop = True
+		gup = False
+		gdown = False
+
+
+		while True:
+
+			functions_1 = f'''
+\t Navigation      Document       File                  Info
+\t---------------------------------------------------------------------
+\tUp    : ↑   |   save : s   |   Add new row : r   |   Table          : {name}
+\tDown  : ↓   |   edit : e   |   Delete Row  : d   |   Total Rows     : {_max}
+\tLeft  : ←   |   exit : x   |                     |   Current Row    : {row + 1}
+\tRight : →   |              |                     |   Current Column : {column + 1}
+'''
+			ui.clear()
+			print(functions_1)
+
+			if _max - row - 10 + crt_row > 0:
+				gdown = True
+			else:
+				gdown = False
+
+			if row - crt_row >0 :
+				gup = True
+			else:
+				gup = False
+
+
+			if first_loop == True:
+				ui.tabulate(table[top:bottom],"data",crt_r = crt_row ,crt_c = column,len_const = "Store",go_up = gup,go_down = gdown)
+				first_loop = False
+			else:
+				ui.tabulate(table[top:bottom],"data",crt_r = crt_row ,crt_c = column,len_const = "True",go_up = gup,go_down = gdown)
+
+			event = getch.getch()
+
+			if event == "B":
+				if crt_row == _range - 1 :
+					for i in range(_range,0,-1):
+						if bottom + i <= _max:
+							top = bottom
+							bottom += i
+							row += 1
+							crt_row = 0
+							break
+				elif row != _max - 1:
+					crt_row += 1
+					row += 1
+
+			if event == "A":
+				if crt_row == 0:
+					for i in range(_range,0,-1):
+						if top - 1 > 0 :
+							bottom = top
+							top -= i
+							crt_row = _range - 1
+							row -= 1
+							break
+				else:
+					crt_row -= 1
+					row -= 1
+
+
+			
+			if event == "C" and column < columns - 1:
+				column += 1
+			if event == "D" and column > 0:
+				column -= 1
+
+
+
+				

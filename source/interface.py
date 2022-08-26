@@ -1,5 +1,6 @@
 from source import variables as var
 import os,sys
+import time
 class Interface():
 	def __init__(self):
 		###################################
@@ -89,7 +90,7 @@ class Interface():
 	# Transforms a 2D to list to Readable Table Format
 	##################################################
 
-	def tabulate(self,table,ttype,table_name = "",option_nums = True,crt_r = 0,crt_c = 0):
+	def tabulate(self,table,ttype,table_name = "",option_nums = True,crt_r = 0,crt_c = 0,len_const = "False",go_up = False,go_down = False):
 
 
 	# table : 2D list to be printed
@@ -97,8 +98,8 @@ class Interface():
 
 	# ttype (table) : shows table without pointer
 	# ttype (data) : shows table with a pointer
-
 	# ttype (menu) : Indexes the Table
+
 	#option_nums : indexes tables items
 
 	#crt_r : Current Row
@@ -155,6 +156,14 @@ class Interface():
 			horizontal_length += columns_length[i] + 4
 		horizontal_length += 1
 
+		if len_const == "Store":
+			self.horizontal_length = horizontal_length
+			self.columns_length = columns_length
+
+
+		if len_const == "True":
+			horizontal_length = self.horizontal_length
+			columns_length = self.columns_length
 
 		# Output Creation
 
@@ -163,7 +172,10 @@ class Interface():
 			string += var.tab + ("_" * (horizontal_length//2 - len(table_name)//2)) + table_name
 			string += ("_" * ((horizontal_length//2) - len(str(table_name))//2))
 			string += "\n\n"
-
+		if go_up == True:
+			print(" " * ((horizontal_length//2)+4),"︿")
+		else:
+			print()
 		for i in range(rows):
 			if ttype == "table" and i == 0:
 				# Rows Seperator
@@ -216,6 +228,10 @@ class Interface():
 		string += "\n"
 
 		print(string)
+		if go_down == True:
+			print(" " * ((horizontal_length//2)+4),"﹀")
+		else:
+			print()
 
 
 	############################################

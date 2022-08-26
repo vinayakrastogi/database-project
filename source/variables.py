@@ -42,7 +42,7 @@ admin_menu_0 = [
 					"Show Employee Info",
 					"Edit Employee Info",
 					"Show Sales (Graphs)",
-					"Show Feedbacks/Complaints",
+					"Show Complaints",
 					"Back"
 				]
 
@@ -52,10 +52,21 @@ admin_menu_0_1 = [
 					"Search Product by Name",
 					"Back"
 				]
+
+admin_menu_0_2 = [
+					"Manage Products (Spreadsheet Mode)",
+					"Manage Products (by ID)",
+					"Manage Products (by Name))",
+					"Back"]
+
 admin_menu_0_3 = [
 					"Show all Employees",
 					"Search Employee by ID",
 					"Search Employee by Name",
+					"Back"
+				]
+admin_menu_0_6 = [
+					"Show All Complaints",
 					"Back"
 				]
 
@@ -77,7 +88,7 @@ customer_menu_0 = [
 enter_pid = tab + "Product ID :: "
 enter_pname = tab + "Product Name :: "
 enter_eid = tab + "Employee ID :: "
-enter_ename = tab + "Employee Name Name :: "
+enter_ename = tab + "Employee Name :: "
 
 
 
@@ -94,11 +105,16 @@ err_03 = "ID not found"
 err_04 = "Name not found"
 err_05 = "ID's are integer"
 
-msg_01 = "ID Found"
+msg_01 = "All Complaints have been Deleted ."
+confirm_msg = "Are Your sure (Y/n) :: "
 
+
+
+valid_inputs = ["A","B","C","D"]
 
 # lolcat
 wait = tab + "Press Enter to Continue"
-
+yes = ["y","Y","Yes","yes"]
 admin = "Admin"
 customer = "Customer"
+

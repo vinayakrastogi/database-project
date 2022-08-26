@@ -1,6 +1,5 @@
 from source import interface
 from source import functions
-
 from source import variables as var
 
 import pandas
@@ -47,6 +46,12 @@ class App():
 		temp = self.employees.columns.tolist()
 		self.employees = self.employees.values.tolist()
 		self.employees.insert(0,temp)
+
+		self.complaints = pandas.read_json("data/complaints.json")
+		temp = self.complaints.columns.tolist()
+		self.complaints = self.complaints.values.tolist()
+		self.complaints.insert(0,temp)
+		
 
 
 	#####################################################
@@ -163,6 +168,7 @@ class App():
 			elif choice == 2:
 				self.change_directory(var.admin_menu_0[1])
 				ui.message_box("dir",self.dir)
+				self.admin_menu_0_2()
 
 			elif choice == 3:
 				self.change_directory(var.admin_menu_0[2])
@@ -180,6 +186,7 @@ class App():
 			elif choice == 6:
 				self.change_directory(var.admin_menu_0[5])
 				ui.message_box("dir",self.dir)
+				self.admin_menu_0_6()
 
 			else:
 				ui.message_box(var.mssg_title_error,var.err_01)
@@ -289,6 +296,29 @@ class App():
 				ui.message_box(var.mssg_title_error,var.err_01)
 
 
+
+	def admin_menu_0_2(self):
+		while True:
+			ui.menufy(var.admin_menu_0_2,1)
+			choice = functions.get_input(var.admin_menu_0_2)
+			ui.clear()
+
+			if choice == 1:
+				self.products = functions.spreadsheet_mode(self.products,"Products")
+				ui.wait()
+
+
+			elif choice == len(var.admin_menu_0_2):
+				self.change_directory("back")
+				ui.message_box("dir",self.dir)
+				break
+
+
+			else:
+				ui.clear()
+				ui.message_box(var.mssg_title_error,var.err_01)
+
+
 	def admin_menu_0_3(self):
 		while True:
 			ui.menufy(var.admin_menu_0_3,1)
@@ -360,6 +390,35 @@ class App():
 				ui.clear()
 				ui.message_box(var.mssg_title_error,var.err_01)
 
+	def admin_menu_0_6(self):
+		while True:
+			ui.menufy(var.admin_menu_0_6,1)
+			choice = functions.get_input(var.admin_menu_0_6)
+			ui.clear()
 
-app = App()
-app.execute()
+
+
+			if choice == 1:
+				self.change_directory(var.admin_menu_0_6[0])
+				ui.message_box("dir",self.dir)
+				ui.tabulate(self.complaints,"table","Complaints")
+
+				ui.wait()
+				self.change_directory("back")
+				ui.clear()
+				ui.message_box("dir",self.dir)
+
+
+			elif choice == len(var.admin_menu_0_6):
+				self.change_directory("back")
+				ui.message_box("dir",self.dir)
+				break
+
+			else:
+				ui.clear()
+				ui.message_box(mssg_title_error,var.err_01)
+			
+
+if __name__ == "__main__":
+	app = App()
+	app.execute()
