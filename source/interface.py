@@ -92,7 +92,6 @@ class Interface():
 
 	def tabulate(self,table,ttype,table_name = "",option_nums = True,crt_r = 0,crt_c = 0,len_const = "False",go_up = False,go_down = False):
 
-
 	# table : 2D list to be printed
 	# ttype : menu , data , table
 
@@ -175,7 +174,7 @@ class Interface():
 		if go_up == True:
 			print(" " * ((horizontal_length//2)+4),"︿")
 		else:
-			print()
+			print("")
 		for i in range(rows):
 			if ttype == "table" and i == 0:
 				# Rows Seperator
@@ -188,11 +187,10 @@ class Interface():
 			string += (var.tab) + var.column_seperator
 
 			for j in range(columns):
-
 				# Assigning Pointers
 				if i == crt_r and j == crt_c and ttype == "data":
-					ptr_l = "["
-					ptr_r = "]"
+					ptr_l = "<"
+					ptr_r = ">"
 				else:
 					ptr_l = " "
 					ptr_r = " "
@@ -228,8 +226,10 @@ class Interface():
 		string += "\n"
 
 		print(string)
+		
+
 		if go_down == True:
-			print(" " * ((horizontal_length//2)+4),"﹀")
+			print("\n"," " * ((horizontal_length//2)+4),"﹀")
 		else:
 			print()
 

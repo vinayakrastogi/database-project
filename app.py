@@ -305,7 +305,12 @@ class App():
 
 			if choice == 1:
 				self.products = functions.spreadsheet_mode(self.products,"Products")
-				ui.wait()
+				temp = self.products.pop(0)
+				self.products = pandas.DataFrame(self.products,columns = temp)
+				self.products.to_json("data/products.json")
+				self.load_data_files()
+				ui.clear()
+				ui.message_box("dir",self.dir)
 
 
 			elif choice == len(var.admin_menu_0_2):

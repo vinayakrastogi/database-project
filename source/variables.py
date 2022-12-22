@@ -2,6 +2,9 @@
 row_seperator = "_"
 column_seperator = "|"
 
+#Table Selectors
+left_selector = "【"
+
 # Distance of Output From L.H.S
 tab = "\t"
 
