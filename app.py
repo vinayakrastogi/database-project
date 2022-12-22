@@ -70,9 +70,8 @@ class App():
 
 		elif choice == 2:
 			ui.clear()
-			self.change_directory(var.customer)
-			ui.message_box("dir",self.dir)
-			self.customer_main_menu()
+			ui.message_box(var.mssg_title_default,var.cust_mssg)
+			self.user()
 
 		elif choice == 3:
 			sys.exit()
@@ -136,17 +135,6 @@ class App():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 	######################################
 	# ----> Start Admins Program/Functions
 	######################################
@@ -178,10 +166,12 @@ class App():
 			elif choice == 4:
 				self.change_directory(var.admin_menu_0[3])
 				ui.message_box("dir",self.dir)
+				self.admin_menu_0_4()
 
 			elif choice == 5:
 				self.change_directory(var.admin_menu_0[4])
 				ui.message_box("dir",self.dir)
+				self.admin_menu_0_5()
 
 			elif choice == 6:
 				self.change_directory(var.admin_menu_0[5])
@@ -215,8 +205,6 @@ class App():
 			if choice == 4:
 				self.message_box(var.mssg_title_default,var.customer_menu_0[3])
 			
-
-
 
 
 	########################################
@@ -395,6 +383,148 @@ class App():
 				ui.clear()
 				ui.message_box(var.mssg_title_error,var.err_01)
 
+	def admin_menu_0_4(self):
+		while True:
+			ui.menufy(var.admin_menu_0_4,1)
+			choice = functions.get_input(var.admin_menu_0_4)
+			ui.clear()
+
+			if choice == 1:
+				self.employees = functions.spreadsheet_mode(self.employees,"Employees")
+				temp = self.employees.pop(0)
+				self.employees = pandas.DataFrame(self.employees,columns = temp)
+				self.employees.to_json("data/employee.json")
+				self.load_data_files()
+				ui.clear()
+				ui.message_box("dir",self.dir)
+
+
+			elif choice == len(var.admin_menu_0_2):
+				self.change_directory("back")
+				ui.message_box("dir",self.dir)
+				break
+
+
+			else:
+				ui.clear()
+				ui.message_box(var.mssg_title_error,var.err_01)
+
+	def admin_menu_0_5(self):
+		while True:
+			ui.menufy(var.admin_menu_0_5,2)
+			choice = functions.get_input(var.admin_menu_0_5)
+			ui.clear()
+
+
+			if choice == 1:
+				self.change_directory(var.admin_menu_0_5[0])
+				ui.message_box("dir",self.dir)
+
+				functions.plot_graph(functions.get_column(self.products,4),functions.get_column(self.products,1),"line","Products","Quantity")
+				ui.wait()
+				self.change_directory("back")
+				ui.clear()
+				ui.message_box("dir",self.dir)
+
+
+			if choice == 2:
+				self.change_directory(var.admin_menu_0_5[1])
+				ui.message_box("dir",self.dir)
+
+				functions.plot_graph(functions.get_column(self.products,4),functions.get_column(self.products,1),"bar","Products","Quantity")
+				ui.wait()
+				self.change_directory("back")
+				ui.clear()
+				ui.message_box("dir",self.dir)
+
+
+			if choice == 3:
+				self.change_directory(var.admin_menu_0_5[2])
+				ui.message_box("dir",self.dir)
+
+				output = functions.max_min(self.products,4,"max")
+
+				ui.tabulate(output,"table")
+
+				ui.wait()
+				self.change_directory("back")
+				ui.clear()
+				ui.message_box("dir",self.dir)
+
+			if choice == 4:
+				self.change_directory(var.admin_menu_0_5[3])
+				ui.message_box("dir",self.dir)
+
+				output = functions.max_min(self.products,4,"min")
+
+				ui.tabulate(output,"table")
+
+				ui.wait()
+				self.change_directory("back")
+				ui.clear()
+				ui.message_box("dir",self.dir)
+
+			if choice == 5:
+				self.change_directory(var.admin_menu_0_5[4])
+				ui.message_box("dir",self.dir)
+
+				output = functions.total(self.products,4,"Products Sold")
+
+				ui.menufy(output,1,True)
+
+				ui.wait()
+				self.change_directory("back")
+				ui.clear()
+				ui.message_box("dir",self.dir)
+
+			if choice == 6:
+				self.change_directory(var.admin_menu_0_5[5])
+				ui.message_box("dir",self.dir)
+
+				output = functions.max_min(self.employees,2,"max")
+
+				ui.tabulate(output,"table")
+
+				ui.wait()
+				self.change_directory("back")
+				ui.clear()
+				ui.message_box("dir",self.dir)
+
+			if choice == 7:
+				self.change_directory(var.admin_menu_0_5[6])
+				ui.message_box("dir",self.dir)
+
+				output = functions.max_min(self.employees,2,"min")
+
+				ui.tabulate(output,"table")
+
+				ui.wait()
+				self.change_directory("back")
+				ui.clear()
+				ui.message_box("dir",self.dir)
+
+			if choice == 8:
+				self.change_directory(var.admin_menu_0_5[7])
+				ui.message_box("dir",self.dir)
+
+				output = functions.total(self.employees,2,"Salary Given")
+
+				ui.menufy(output,1,True)
+
+				ui.wait()
+				self.change_directory("back")
+				ui.clear()
+				ui.message_box("dir",self.dir)
+
+			elif choice == len(var.admin_menu_0_5):
+				self.change_directory("back")
+				ui.message_box("dir",self.dir)
+				break
+
+			else:
+				ui.clear()
+				ui.message_box(var.mssg_title_error,var.err_01)
+
 	def admin_menu_0_6(self):
 		while True:
 			ui.menufy(var.admin_menu_0_6,1)
@@ -421,7 +551,7 @@ class App():
 
 			else:
 				ui.clear()
-				ui.message_box(mssg_title_error,var.err_01)
+				ui.message_box(var.mssg_title_error,var.err_01)
 			
 
 if __name__ == "__main__":

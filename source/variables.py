@@ -2,14 +2,11 @@
 row_seperator = "_"
 column_seperator = "|"
 
-#Table Selectors
-left_selector = "【"
-
 # Distance of Output From L.H.S
 tab = "\t"
 
 # Input indicator for menu options (Why Does it exist)
-get_input_menu = tab + ":)"
+get_input_menu = tab + "~"
 
 ################
 # USER VARIABLES
@@ -18,7 +15,7 @@ user = "\n\n" + tab +"Who Are You ?\n\n"
 
 user_list = [
 				"Admin",
-				"Customer",
+				"!! Customer !!",
 				"Exit"
 			]
 
@@ -31,8 +28,8 @@ tries_remaining = "Tries Remaining : "
 get_admin_name = "\n\n" + tab + "Admin Id :: "
 get_admin_pswd = "\n\n" + tab + "Password :: "
 
-admin_ids = ["Vinayak","CEO","t"]
-admin_pswd = ["LinusTorvaldsOP","rob_my_shop","t"]
+admin_ids = ["test","vinayak"]
+admin_pswd = ["test","vinayak420"]
 
 admin_name_found = "Admin Username found, Now Enter Password"
 
@@ -44,7 +41,7 @@ admin_menu_0 = [
 					"Manage Products",
 					"Show Employee Info",
 					"Edit Employee Info",
-					"Show Sales (Graphs)",
+					"About The Store (Functions)",
 					"Show Complaints",
 					"Back"
 				]
@@ -58,8 +55,6 @@ admin_menu_0_1 = [
 
 admin_menu_0_2 = [
 					"Manage Products (Spreadsheet Mode)",
-					"Manage Products (by ID)",
-					"Manage Products (by Name))",
 					"Back"]
 
 admin_menu_0_3 = [
@@ -68,6 +63,21 @@ admin_menu_0_3 = [
 					"Search Employee by Name",
 					"Back"
 				]
+
+admin_menu_0_4 = [
+					"Manage Employees (Spreadsheet Mode)",
+					"Back"]
+admin_menu_0_5 = [
+					"Show Sales Graph(LINE-PLOT)",
+					"Show Sales Graph(BAR-PLOT)",
+					"Most Sold product",
+					"Least Sold Product",
+					"Total Products Sold",
+					"Highest Paid Employee",
+					"Lowest Paid Employee",
+					"Total Salary Given",
+					"Back"]
+
 admin_menu_0_6 = [
 					"Show All Complaints",
 					"Back"
@@ -108,8 +118,7 @@ err_03 = "ID not found"
 err_04 = "Name not found"
 err_05 = "ID's are integer"
 
-msg_01 = "All Complaints have been Deleted ."
-confirm_msg = "Are Your sure (Y/n) :: "
+cust_mssg = "Customers Corner is under Developement !! Come back later"
 
 
 

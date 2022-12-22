@@ -1,7 +1,8 @@
-import getch
-import copy
 from source import variables as var
 from source import interface
+import matplotlib.pyplot as plt
+import getch
+import copy
 
 ui = interface.Interface()
 
@@ -204,10 +205,86 @@ class Functions():
 
 			if event.lower() == "r":
 				table.pop(row)
+				_max = len(table)
+
 
 			if event.lower() == "i":
 				table.insert(row+1,copy.deepcopy(new_row))
 				_max = len(table)
 
+	def plot_graph(self,values,indexes,gtype,xlab,ylab):
+		for i in range(len(values)):
+			try:
+				values[i] = int(values[i])
+			except:
+				values[i] = 0
 
-				
+		indexes.pop(0)
+		values.pop(0)
+
+
+		args1 = {"color":"#3c3f8c",
+		"linestyle":"solid",
+		"linewidth":"1",
+		"marker":"s",
+		"mfc":"#b00909",
+		"mec":"#b00909"}
+		plt.figure(facecolor = "#01020f")
+		ax = plt.axes()
+		ax.set_facecolor("#000229")
+		ax.tick_params(axis = "x", colors = "white")
+		ax.tick_params(axis = "y", colors = "white")
+		ax.xaxis.label.set_color("white")
+		ax.yaxis.label.set_color("white")
+		plt.xticks(fontsize = 7,rotation = 90)
+		plt.yticks(fontsize = 7)
+		plt.grid(color = "#202020")
+		ax.set_xlabel(xlab)
+		ax.set_ylabel(ylab)
+
+		if gtype == "line":
+			plt.plot(indexes,values,**args1)
+			plt.tight_layout()
+			plt.show()
+
+		if gtype == "bar":
+			plt.bar(indexes,values)
+			plt.tight_layout()
+			plt.show()
+
+
+	def max_min(self,table,col_no,mtype):
+
+		output = []
+		temp = self.get_column(table,col_no)
+		temp.pop(0)
+		for i in range(len(temp)):
+			try:
+				temp[i] = int(temp[i])
+			except:
+				temp[i] = 0
+
+		if mtype == "max":
+			mval = max(temp)
+		elif mtype == "min":
+			mval = min(temp)
+
+		mindex = temp.index(mval)
+
+		output.append(table[0])
+		output.append(table[mindex + 1])
+
+		return output
+
+	def total(self,table,col_no,name):
+		temp = self.get_column(table,col_no)
+		temp.pop(0)
+
+		for i in range(len(temp)):
+			try:
+				temp[i] = int(temp[i])
+			except:
+				temp[i] = 0
+
+		output = [name,sum(temp)]
+		return output
