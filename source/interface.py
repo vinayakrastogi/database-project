@@ -189,8 +189,8 @@ class Interface():
 			for j in range(columns):
 				# Assigning Pointers
 				if i == crt_r and j == crt_c and ttype == "data":
-					ptr_l = "<"
-					ptr_r = ">"
+					ptr_l = "["
+					ptr_r = "]"
 				else:
 					ptr_l = " "
 					ptr_r = " "

@@ -37,17 +37,17 @@ class App():
 	#########################################
 	def load_data_files(self):
 
-		self.products = pandas.read_json("data/products.json")
+		self.products = pandas.read_csv("data/products.csv")
 		temp = self.products.columns.tolist()
 		self.products = self.products.values.tolist()
 		self.products.insert(0,temp)
 
-		self.employees = pandas.read_json("data/employee.json")
+		self.employees = pandas.read_csv("data/employee.csv")
 		temp = self.employees.columns.tolist()
 		self.employees = self.employees.values.tolist()
 		self.employees.insert(0,temp)
 
-		self.complaints = pandas.read_json("data/complaints.json")
+		self.complaints = pandas.read_csv("data/complaints.csv")
 		temp = self.complaints.columns.tolist()
 		self.complaints = self.complaints.values.tolist()
 		self.complaints.insert(0,temp)
@@ -295,7 +295,7 @@ class App():
 				self.products = functions.spreadsheet_mode(self.products,"Products")
 				temp = self.products.pop(0)
 				self.products = pandas.DataFrame(self.products,columns = temp)
-				self.products.to_json("data/products.json")
+				self.products.to_csv("data/products.csv",index = False)
 				self.load_data_files()
 				ui.clear()
 				ui.message_box("dir",self.dir)
@@ -393,7 +393,7 @@ class App():
 				self.employees = functions.spreadsheet_mode(self.employees,"Employees")
 				temp = self.employees.pop(0)
 				self.employees = pandas.DataFrame(self.employees,columns = temp)
-				self.employees.to_json("data/employee.json")
+				self.employees.to_csv("data/employee.csv",index = False)
 				self.load_data_files()
 				ui.clear()
 				ui.message_box("dir",self.dir)
